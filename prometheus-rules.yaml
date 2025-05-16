@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: microservices-alerts
+  namespace: monitoring
+spec:
+  groups:
+  - name: microservices
+    rules:
+    - alert: HighCPUUsage
+      expr: container_cpu_usage_seconds_total{namespace="app"} > 0.8
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: High CPU usage detected
+        description: Container {{ $labels.container }} in pod {{ $labels.pod }} has high CPU usage 
