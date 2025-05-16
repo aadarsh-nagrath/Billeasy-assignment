@@ -1,0 +1,37 @@
+package kubernetes.admission
+
+import data.kubernetes.namespaces
+
+deny[msg] {
+    input.request.kind.kind == "Pod"
+    container := input.request.object.spec.containers[_]
+    not container.resources.limits
+    msg := sprintf("Container %v must have resource limits", [container.name])
+}
+
+deny[msg] {
+    input.request.kind.kind == "Deployment"
+    not input.request.object.metadata.labels.app
+    msg := "Deployment must have 'app' label"
+}
+
+deny[msg] {
+    input.request.kind.kind == "Pod"
+    container := input.request.object.spec.containers[_]
+    not container.securityContext.runAsNonRoot
+    msg := sprintf("Container %v must run as non-root", [container.name])
+}
+
+deny[msg] {
+    input.request.kind.kind == "Pod"
+    container := input.request.object.spec.containers[_]
+    not container.securityContext.readOnlyRootFilesystem
+    msg := sprintf("Container %v must have read-only root filesystem", [container.name])
+}
+
+deny[msg] {
+    input.request.kind.kind == "Pod"
+    container := input.request.object.spec.containers[_]
+    not container.securityContext.allowPrivilegeEscalation == false
+    msg := sprintf("Container %v must not allow privilege escalation", [container.name])
+} 

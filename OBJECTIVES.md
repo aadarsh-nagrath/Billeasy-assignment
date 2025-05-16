@@ -34,7 +34,6 @@ Build and secure a local Kubernetes microservices environment that mimics AWS EK
   - [x] Restrict auth-service to data-service communication
   - [x] Block unnecessary egress traffic
 - [x] Implement preventive measures
-  - [x] Set up OPA/Kyverno/Falco for header logging detection
   - [x] Configure alerts for policy violations
 
 ### Part 4: Observability

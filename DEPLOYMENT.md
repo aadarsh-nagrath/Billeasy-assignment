@@ -135,6 +135,30 @@ The monitoring stack includes:
   - Pod failures
   - Service availability
 
+## 11. OPA Policies
+
+The deployment includes Open Policy Agent (OPA) policies that enforce:
+
+1. Resource Requirements:
+   - All containers must have resource limits defined
+   - All deployments must have the 'app' label
+
+2. Security Context:
+   - Containers must run as non-root
+   - Root filesystem must be read-only
+   - Privilege escalation must be disabled
+
+To apply the OPA policies:
+```bash
+kubectl apply -f policies/opa/policy-configmap.yaml
+```
+
+These policies help ensure:
+- Resource management
+- Security best practices
+- Consistent labeling
+- Container security
+
 ## Troubleshooting
 
 1. If pods fail to start:
