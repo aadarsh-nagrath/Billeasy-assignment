@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-data-service
+  namespace: app
+spec:
+  serviceAccountName: data-service
+  containers:
+  - name: debug
+    image: busybox
+    command: ["sleep", "3600"]
+    args: []
+    tty: true
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-default
+  namespace: app
+  labels:
+    app: auth-service
+spec:
+  serviceAccountName: default
+  containers:
+  - name: debug
+    image: busybox
+    command: ["sleep", "3600"]
+    args: []
+    tty: true 

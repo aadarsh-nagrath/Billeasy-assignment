@@ -1,0 +1,12 @@
+dependencies:
+- name: gateway
+  repository: file://../gateway
+  version: 0.1.0
+- name: auth-service
+  repository: file://../auth-service
+  version: 0.1.0
+- name: data-service
+  repository: file://../data-service
+  version: 0.1.0
+digest: sha256:d09f15f5b89127d050afd0c7a008e9de674979b39d3a7d1460de9a5c65d05586
+generated: "2025-05-16T10:55:22.269107+05:30"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microservices-dashboard
+  namespace: monitoring
+  labels:
+    grafana_dashboard: "1"
+data:
+  microservices-dashboard.json: |-
+    {{ .Files.Get "grafana-dashboard.json" | indent 4 }} 

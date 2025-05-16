@@ -1,0 +1,16 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: minio-access
+spec:
+  selector: app == 'minio'
+  ingress:
+    - action: Allow
+      source:
+        namespaceSelector: kubernetes.io/metadata.name == 'app'
+        podSelector: app == 'data-service'
+      destination:
+        ports:
+          - 9000
+    - action: Deny
+      source: {} 

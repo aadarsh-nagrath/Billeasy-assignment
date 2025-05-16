@@ -1,0 +1,53 @@
+gateway:
+  replicaCount: 2
+  image:
+    repository: nginxdemos/hello
+    tag: latest
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+auth-service:
+  replicaCount: 2
+  image:
+    repository: kennethreitz/httpbin
+    tag: latest
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+data-service:
+  replicaCount: 2
+  image:
+    repository: hashicorp/http-echo
+    tag: latest
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+  minio:
+    endpoint: minio.minio.svc.cluster.local:9000
+    bucket: data-service-bucket 
