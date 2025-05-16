@@ -151,13 +151,6 @@ Tests:
    - Network policies for access control
    - OPA for policy enforcement
 
-## Known Issues and Limitations
 
-1. Local development environment limitations
-   - Minikube resource constraints
-   - Limited scalability testing
-
-2. Security considerations
-   - Basic authentication only
-   - No TLS between services (local cluster)
-
+### Grafana dashboard
+<img width="1728" alt="Screenshot 2025-05-17 at 12 44 51 AM" src="https://github.com/user-attachments/assets/cf66289b-5d21-495e-808f-31f768bd8f82" />
