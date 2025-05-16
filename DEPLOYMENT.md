@@ -90,14 +90,28 @@ This script tests:
 ## 8. Accessing Services
 
 ### Grafana Dashboard
-```bash
-# Get Grafana admin password
-kubectl get secret -n monitoring monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 -d
 
-# Port forward Grafana
-kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80
-```
-Access Grafana at http://localhost:3000 (username: admin)
+The monitoring stack includes Grafana for visualizing metrics. To access the Grafana dashboard:
+
+1. Set up port forwarding:
+   ```bash
+   kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80
+   ```
+
+2. Access Grafana in your browser at http://localhost:3000
+
+3. Login credentials:
+   - Username: admin
+   - Password: prom-operator (or get it using the command below)
+   ```bash
+   kubectl get secret -n monitoring monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 -d
+   ```
+
+4. The Microservices Dashboard will be automatically loaded and shows:
+   - HTTP Request Rate for all services
+   - Error Rate for all services
+
+The dashboard automatically refreshes every 5 seconds and shows data from the last 6 hours. You can adjust the time range using the time picker in the top right corner.
 
 ### Application Services
 - Gateway: http://localhost:8080
